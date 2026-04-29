@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Working files (not needed for deployed site)
+assets/
+brief/
+
+# Editor
+.vscode/
+.idea/
+
+# Logs
+*.log
