@@ -428,9 +428,30 @@ p:last-child {
 .nav-toggle svg {
   width: 26px;
   height: 26px;
+  transition: transform 0.3s var(--ease);
+}
+
+.nav-mobile-open .nav-toggle svg {
+  transform: rotate(90deg);
 }
 
 @media (max-width: 980px) {
+  .nav {
+    padding: 14px 0;
+  }
+
+  .nav-brand img {
+    height: 44px;
+  }
+
+  .nav-brand-text strong {
+    font-size: 1.05rem;
+  }
+
+  .nav-brand-text span {
+    display: none;
+  }
+
   .nav-links,
   .nav-cta {
     display: none;
@@ -440,23 +461,104 @@ p:last-child {
     display: inline-flex;
   }
 
-  .nav-mobile-open .nav-links {
-    display: flex;
-    position: absolute;
-    inset: 100% 0 auto 0;
-    flex-direction: column;
+  .nav-mobile-open .nav-drawer {
+    position: fixed;
+    inset: 0;
     background: var(--cream);
-    padding: 24px 28px 32px;
-    gap: 18px;
-    border-bottom: 1px solid var(--line-warm);
-    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px 28px 36px;
+    z-index: 90;
+    animation: drawer-in 0.32s var(--ease);
   }
 
-  .nav-mobile-open .nav-cta {
-    display: inline-flex;
-    margin-left: 0;
-    margin-top: 6px;
+  .nav-mobile-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+    padding: 0;
   }
+
+  .nav-mobile-open .nav-links a {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--burgundy-700);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    padding: 6px 12px;
+    animation: drawer-item 0.4s var(--ease) backwards;
+  }
+
+  .nav-mobile-open .nav-links li:nth-child(1) a { animation-delay: 0.08s; }
+  .nav-mobile-open .nav-links li:nth-child(2) a { animation-delay: 0.14s; }
+  .nav-mobile-open .nav-links li:nth-child(3) a { animation-delay: 0.20s; }
+  .nav-mobile-open .nav-links li:nth-child(4) a { animation-delay: 0.26s; }
+
+  .nav-mobile-open .nav-links a::after {
+    display: none;
+  }
+
+  .nav-mobile-open .nav-links a.active {
+    color: var(--burgundy-500);
+    border-bottom: 1.5px solid var(--burgundy-500);
+  }
+
+  .nav-mobile-open .nav-cta-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    margin-top: 24px;
+    animation: drawer-item 0.4s var(--ease) 0.32s backwards;
+  }
+
+  .nav-mobile-open .nav-cta-mobile .btn {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .nav-mobile-open .nav-contact-mini {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    animation: drawer-item 0.4s var(--ease) 0.38s backwards;
+  }
+
+  .nav-mobile-open .nav-contact-mini a {
+    color: var(--burgundy-500);
+    font-weight: 600;
+  }
+
+  .nav-mobile-open .nav-contact-mini a:hover {
+    color: var(--burgundy-700);
+  }
+
+  body.nav-locked {
+    overflow: hidden;
+  }
+}
+
+.nav-drawer,
+.nav-cta-mobile,
+.nav-contact-mini {
+  display: none;
+}
+
+@keyframes drawer-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes drawer-item {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
 }
 
 /* hero */
@@ -641,6 +743,43 @@ p:last-child {
     aspect-ratio: 4 / 4;
     max-width: 480px;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding: 60px 0 56px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    padding: 16px 22px;
+  }
+
+  .hero-meta {
+    gap: 22px;
+    margin-top: 36px;
+  }
+
+  .hero-meta-item strong {
+    font-size: 1.6rem;
+  }
+
+  .hero-badge {
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    max-width: none;
+  }
+
+  .hero-page h1 {
+    font-size: clamp(2.2rem, 8vw, 3.2rem);
   }
 }
 
@@ -1029,9 +1168,40 @@ p:last-child {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 560px) {
   .steps {
     grid-template-columns: 1fr;
+    position: relative;
+    padding-left: 28px;
+  }
+
+  .steps::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--burgundy-300), var(--burgundy-500));
+    opacity: 0.4;
+  }
+
+  .step {
+    position: relative;
+  }
+
+  .step::before {
+    left: -22px;
+    top: 20px;
+    background: var(--burgundy-500);
+    color: var(--cream);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    font-size: 0.9rem;
   }
 }
 
@@ -1575,9 +1745,63 @@ p:last-child {
 /* contact page */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(36px, 5vw, 64px);
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 5vw, 56px);
   align-items: start;
+}
+
+.contact-col-heading {
+  margin: 0 0 10px;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--navy);
+}
+
+.contact-col-sub {
+  font-size: 0.97rem;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.calendly-wrap {
+  background: var(--cream);
+  border: 1px solid var(--line-warm);
+  border-radius: var(--radius-lg);
+  padding: clamp(20px, 3vw, 30px);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendly-inline-widget {
+  min-width: 100%;
+  height: 700px;
+  width: 100%;
+}
+
+.contact-info-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: clamp(40px, 5vw, 64px);
+}
+
+.contact-info-row .contact-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+@media (max-width: 980px) {
+  .contact-info-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .contact-info-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form {
@@ -1780,11 +2004,25 @@ p:last-child {
   height: 16px;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 980px) {
   .contact-grid {
     grid-template-columns: 1fr;
   }
 
+  .calendly-col {
+    order: 1;
+  }
+
+  .form-col {
+    order: 2;
+  }
+
+  .calendly-inline-widget {
+    height: 620px;
+  }
+}
+
+@media (max-width: 880px) {
   .form-row {
     grid-template-columns: 1fr;
   }

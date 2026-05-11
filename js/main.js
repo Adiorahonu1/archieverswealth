@@ -1,21 +1,33 @@
 (function () {
   "use strict";
 
-  // mobile nav toggle
+  // mobile nav toggle (full-screen drawer + body lock + ESC to close)
   const header = document.querySelector(".site-header");
   const toggle = document.querySelector(".nav-toggle");
+
+  const closeNav = () => {
+    if (!header) return;
+    header.classList.remove("nav-mobile-open");
+    document.body.classList.remove("nav-locked");
+    if (toggle) toggle.setAttribute("aria-expanded", "false");
+  };
+
   if (header && toggle) {
     toggle.addEventListener("click", () => {
-      header.classList.toggle("nav-mobile-open");
-      const open = header.classList.contains("nav-mobile-open");
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      const opening = !header.classList.contains("nav-mobile-open");
+      header.classList.toggle("nav-mobile-open", opening);
+      document.body.classList.toggle("nav-locked", opening);
+      toggle.setAttribute("aria-expanded", opening ? "true" : "false");
     });
 
-    document.querySelectorAll(".nav-links a").forEach((a) => {
-      a.addEventListener("click", () => {
-        header.classList.remove("nav-mobile-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
+    document.querySelectorAll(".nav-links a, .nav-cta-mobile a").forEach((a) => {
+      a.addEventListener("click", closeNav);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && header.classList.contains("nav-mobile-open")) {
+        closeNav();
+      }
     });
   }
 
