@@ -418,12 +418,22 @@ p:last-child {
   display: none;
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  border: none;
+  border-radius: 12px;
+  background: var(--cream);
+  border: 1px solid var(--line-warm);
+  box-shadow: 0 2px 8px rgba(74, 10, 23, 0.08);
   cursor: pointer;
   padding: 0;
   position: relative;
+  transition: background 0.24s var(--ease), box-shadow 0.24s var(--ease);
+}
+
+.nav-toggle:hover {
+  box-shadow: 0 4px 12px rgba(74, 10, 23, 0.14);
+}
+
+.nav-mobile-open .nav-toggle {
+  background: var(--cream);
 }
 
 .nav-toggle-bar {
