@@ -416,23 +416,42 @@ p:last-child {
 
 .nav-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-sm);
-  align-items: center;
-  justify-content: center;
   background: transparent;
-  color: var(--burgundy-700);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
 }
 
-.nav-toggle svg {
-  width: 26px;
-  height: 26px;
-  transition: transform 0.3s var(--ease);
+.nav-toggle-bar {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: var(--burgundy-700);
+  border-radius: 2px;
+  transition: transform 0.28s var(--ease), opacity 0.18s var(--ease), top 0.28s var(--ease);
 }
 
-.nav-mobile-open .nav-toggle svg {
-  transform: rotate(90deg);
+.nav-toggle-bar:nth-child(1) { top: 14px; }
+.nav-toggle-bar:nth-child(2) { top: 21px; }
+.nav-toggle-bar:nth-child(3) { top: 28px; }
+
+.nav-mobile-open .nav-toggle-bar:nth-child(1) {
+  top: 21px;
+  transform: rotate(45deg);
+}
+
+.nav-mobile-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-mobile-open .nav-toggle-bar:nth-child(3) {
+  top: 21px;
+  transform: rotate(-45deg);
 }
 
 @media (max-width: 980px) {
