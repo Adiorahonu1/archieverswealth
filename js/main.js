@@ -2,30 +2,31 @@
   "use strict";
 
   // mobile nav toggle (full-screen drawer + body lock + ESC to close)
-  const header = document.querySelector(".site-header");
   const toggle = document.querySelector(".nav-toggle");
+  const drawer = document.querySelector(".nav-drawer");
 
   const closeNav = () => {
-    if (!header) return;
-    header.classList.remove("nav-mobile-open");
+    document.body.classList.remove("nav-mobile-open");
     document.body.classList.remove("nav-locked");
     if (toggle) toggle.setAttribute("aria-expanded", "false");
+    if (drawer) drawer.setAttribute("aria-hidden", "true");
   };
 
-  if (header && toggle) {
+  if (toggle) {
     toggle.addEventListener("click", () => {
-      const opening = !header.classList.contains("nav-mobile-open");
-      header.classList.toggle("nav-mobile-open", opening);
+      const opening = !document.body.classList.contains("nav-mobile-open");
+      document.body.classList.toggle("nav-mobile-open", opening);
       document.body.classList.toggle("nav-locked", opening);
       toggle.setAttribute("aria-expanded", opening ? "true" : "false");
+      if (drawer) drawer.setAttribute("aria-hidden", opening ? "false" : "true");
     });
 
-    document.querySelectorAll(".nav-links a, .nav-cta-mobile a").forEach((a) => {
+    document.querySelectorAll(".nav-drawer .nav-links a, .nav-cta-mobile a").forEach((a) => {
       a.addEventListener("click", closeNav);
     });
 
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && header.classList.contains("nav-mobile-open")) {
+      if (e.key === "Escape" && document.body.classList.contains("nav-mobile-open")) {
         closeNav();
       }
     });
