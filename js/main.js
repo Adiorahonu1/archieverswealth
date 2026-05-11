@@ -113,6 +113,79 @@
     });
   }
 
+  // image carousel (crossfade, auto-cycle, manual override)
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("[data-carousel]").forEach((root) => {
+    const slides = Array.from(root.querySelectorAll(".carousel-slide"));
+    const dots = Array.from(root.querySelectorAll(".carousel-dot"));
+    const prevBtn = root.querySelector(".carousel-prev");
+    const nextBtn = root.querySelector(".carousel-next");
+    if (slides.length < 2) return;
+
+    const intervalMs = parseInt(root.dataset.interval, 10) || 5000;
+    let current = slides.findIndex((s) => s.classList.contains("is-active"));
+    if (current < 0) current = 0;
+    let timer = null;
+
+    const goTo = (next) => {
+      next = (next + slides.length) % slides.length;
+      if (next === current) return;
+      slides[current].classList.remove("is-active");
+      slides[current].setAttribute("aria-hidden", "true");
+      slides[next].classList.add("is-active");
+      slides[next].setAttribute("aria-hidden", "false");
+      if (dots[current]) {
+        dots[current].classList.remove("is-active");
+        dots[current].setAttribute("aria-selected", "false");
+      }
+      if (dots[next]) {
+        dots[next].classList.add("is-active");
+        dots[next].setAttribute("aria-selected", "true");
+      }
+      current = next;
+    };
+
+    const start = () => {
+      if (prefersReducedMotion) return;
+      stop();
+      timer = window.setInterval(() => goTo(current + 1), intervalMs);
+    };
+
+    const stop = () => {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const restart = () => {
+      stop();
+      start();
+    };
+
+    if (nextBtn) nextBtn.addEventListener("click", () => { goTo(current + 1); restart(); });
+    if (prevBtn) prevBtn.addEventListener("click", () => { goTo(current - 1); restart(); });
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        if (!Number.isNaN(idx)) { goTo(idx); restart(); }
+      });
+    });
+
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    root.addEventListener("focusin", stop);
+    root.addEventListener("focusout", start);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    start();
+  });
+
   // year stamp
   document.querySelectorAll("[data-year]").forEach((el) => {
     el.textContent = new Date().getFullYear();
