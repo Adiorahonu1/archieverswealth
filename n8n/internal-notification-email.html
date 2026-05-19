@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<body style="margin:0;padding:0;background:#f8f4ec;font-family:Arial,Helvetica,sans-serif;color:#1a1a1a;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f4ec;padding:24px 16px;">
+    <tr><td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #ead7c0;">
+        <tr><td style="background:#4a0a17;padding:18px 24px;color:#f8f4ec;">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:0.85;">New Lead</div>
+          <div style="font-size:20px;font-weight:600;margin-top:4px;">{{ firstName }} {{ lastName }}</div>
+          <div style="font-size:13px;opacity:0.9;margin-top:2px;">{{ reasonLabel }}</div>
+        </td></tr>
+        <tr><td style="padding:24px;font-size:14px;line-height:1.6;">
+          <table width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
+            <tr><td style="padding:6px 0;color:#6b6b6b;width:90px;">Phone</td><td><a href="tel:{{ phone }}" style="color:#8a0e2d;text-decoration:none;font-weight:600;">{{ phone }}</a></td></tr>
+            <tr><td style="padding:6px 0;color:#6b6b6b;">Email</td><td><a href="mailto:{{ email }}" style="color:#8a0e2d;text-decoration:none;">{{ email }}</a></td></tr>
+            <tr><td style="padding:6px 0;color:#6b6b6b;">Reason</td><td>{{ reasonLabel }}</td></tr>
+            <tr><td style="padding:6px 0;color:#6b6b6b;vertical-align:top;">Message</td><td>{{ messageText }}</td></tr>
+            <tr><td style="padding:6px 0;color:#6b6b6b;">Submitted</td><td>{{ submittedAt }}</td></tr>
+          </table>
+          <div style="margin-top:20px;">
+            <a href="tel:{{ phone }}" style="display:inline-block;background:#8a0e2d;color:#f8f4ec;padding:12px 22px;border-radius:999px;text-decoration:none;font-weight:600;font-size:14px;">Call {{ firstName }} Now</a>
+          </div>
+        </td></tr>
+        <tr><td style="background:#f3ead8;padding:12px 24px;font-size:11px;color:#6b6b6b;">
+          Reply to this email to respond directly to the lead.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>

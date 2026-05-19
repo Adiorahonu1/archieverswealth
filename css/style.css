@@ -768,6 +768,12 @@ p:last-child {
   margin-bottom: 18px;
   max-width: 18ch;
   margin-inline: auto;
+  color: var(--cream);
+}
+
+.hero-page h1 em {
+  font-style: italic;
+  color: var(--gold-soft);
 }
 
 .hero-page .lede {
@@ -2169,11 +2175,11 @@ p:last-child {
     grid-template-columns: 1fr;
   }
 
-  .calendly-col {
+  .form-col {
     order: 1;
   }
 
-  .form-col {
+  .calendly-col {
     order: 2;
   }
 
