@@ -359,7 +359,7 @@ p:last-child {
 }
 
 .nav-brand img {
-  height: 56px;
+  height: 88px;
   width: auto;
   flex: 0 0 auto;
 }
@@ -482,7 +482,7 @@ p:last-child {
   }
 
   .nav-brand img {
-    height: 44px;
+    height: 64px;
   }
 
   .nav-brand-text strong {
@@ -1645,7 +1645,7 @@ p:last-child {
 }
 
 .footer-brand img {
-  height: 56px;
+  height: 80px;
   width: auto;
 }
 

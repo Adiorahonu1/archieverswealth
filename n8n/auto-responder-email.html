@@ -1,12 +1,26 @@
 <!doctype html>
 <html>
-<body style="margin:0;padding:0;background:#f8f4ec;font-family:Georgia,'Cormorant Garamond',serif;color:#1a1a1a;">
+<head>
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<style>
+  :root { color-scheme: light only; supported-color-schemes: light only; }
+  .aw-gold, .aw-gold * { color: #ffb800 !important; }
+  .aw-eyebrow, .aw-eyebrow * { color: #f3dca0 !important; }
+  @media (prefers-color-scheme: dark) {
+    .aw-gold, .aw-gold * { color: #ffb800 !important; }
+    .aw-eyebrow, .aw-eyebrow * { color: #f3dca0 !important; }
+  }
+  u + .body .aw-gold { color: #ffb800 !important; }
+</style>
+</head>
+<body class="body" style="margin:0;padding:0;background:#f8f4ec;font-family:Georgia,'Cormorant Garamond',serif;color:#1a1a1a;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#f8f4ec;padding:32px 16px;">
     <tr><td align="center">
       <table width="560" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 8px 28px rgba(74,10,23,0.08);">
         <tr><td style="background:linear-gradient(135deg,#4a0a17 0%,#8a0e2d 50%,#b1304b 100%);padding:36px 32px;color:#f8f4ec;text-align:center;">
-          <div style="font-size:13px;letter-spacing:3px;text-transform:uppercase;opacity:0.85;">Achievers Wealth Academy</div>
-          <h1 style="margin:10px 0 0;font-size:28px;font-weight:600;">Thank you, {{firstName}}.</h1>
+          <div class="aw-eyebrow" style="font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#f3dca0;"><font color="#f3dca0">Achievers Wealth Academy</font></div>
+          <h1 class="aw-gold" style="margin:10px 0 0;font-size:32px;font-weight:700;color:#ffb800;mso-color-alt:#ffb800;"><font color="#ffb800"><span style="color:#ffb800;">Thank you, {{firstName}}.</span></font></h1>
         </td></tr>
         <tr><td style="padding:36px 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;color:#1a1a1a;">
           <p>Your message about {{reasonLabel}} just landed in my inbox. I read every one of these personally, and I will be in touch within 24 hours to walk you through next steps.</p>
