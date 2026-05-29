@@ -104,7 +104,7 @@
         form.reset();
       } catch (err) {
         status.classList.add("is-error");
-        status.textContent = "Something went wrong sending your message. Please call (201) 912-1781 or email cherryjaneokeke@gmail.com directly.";
+        status.textContent = "Something went wrong sending your message. Please call (201) 912-1781 or email achieverswealthacademy@gmail.com directly.";
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;

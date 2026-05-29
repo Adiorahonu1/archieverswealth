@@ -23,8 +23,8 @@ The workflow:
 1. Receives the JSON payload.
 2. Pulls `first_name`, `last_name`, `phone`, `email`, `reason`, `message`, and `submitted_at` into clean variables. Maps the dropdown value into a human phrase (e.g. `become_an_agent` becomes "becoming a licensed agent"). Defaults an empty message to "(none provided)".
 3. **In parallel:**
-   - Sends a branded auto-responder email from `cherryjaneokeke@gmail.com` back to the submitter.
-   - Sends an internal lead-alert email to `cherryjaneokeke@gmail.com` with full lead details, a tappable phone link, and a "Call Now" button. Reply-To is set to the lead's email so hitting Reply in Gmail goes straight to the lead, not back to herself.
+   - Sends a branded auto-responder email from `achieverswealthacademy@gmail.com` back to the submitter.
+   - Sends an internal lead-alert email to `achieverswealthacademy@gmail.com` with full lead details, a tappable phone link, and a "Call Now" button. Reply-To is set to the lead's email so hitting Reply in Gmail goes straight to the lead, not back to herself.
 4. Returns `{ "ok": true }` with status 200 so `js/main.js` displays the green in-page success message.
 
 ## One-time setup
@@ -36,7 +36,7 @@ In n8n at `https://n8n.srv1180913.hstgr.cloud`:
 1. Credentials, New, **Gmail OAuth2 API**.
 2. In Google Cloud Console (Cherry Jane's account, or shared agency project), enable the Gmail API, create an OAuth client (Web), and add `https://n8n.srv1180913.hstgr.cloud/rest/oauth2-credential/callback` as an authorized redirect URI.
 3. Paste Client ID and Client Secret into the n8n credential modal.
-4. Click **Sign in with Google**, log in as `cherryjaneokeke@gmail.com`, grant the `gmail.send` scope.
+4. Click **Sign in with Google**, log in as `achieverswealthacademy@gmail.com`, grant the `gmail.send` scope.
 5. Save the credential as `CherryJane Gmail`.
 
 ### 2. Import the workflow
@@ -71,12 +71,12 @@ curl -X POST https://n8n.srv1180913.hstgr.cloud/webhook/achievers-wealth-academy
 Expect, within 30 seconds:
 
 - HTTP 200 with `{"ok": true}` in the response.
-- **In your test inbox:** Subject "Thanks for reaching out, Test", sender "Cherry Jane Okeke <cherryjaneokeke@gmail.com>", body mentioning "becoming a licensed agent".
-- **In `cherryjaneokeke@gmail.com`:** Subject "New lead: Test Lead, becoming a licensed agent", sender "Achievers Wealth Leads <cherryjaneokeke@gmail.com>". Hit Reply: the To field should be `YOUR_TEST_INBOX@gmail.com` (NOT herself), thanks to the Reply-To.
+- **In your test inbox:** Subject "Thanks for reaching out, Test", sender "Cherry Jane Okeke <achieverswealthacademy@gmail.com>", body mentioning "becoming a licensed agent".
+- **In `achieverswealthacademy@gmail.com`:** Subject "New lead: Test Lead, becoming a licensed agent", sender "Achievers Wealth Leads <achieverswealthacademy@gmail.com>". Hit Reply: the To field should be `YOUR_TEST_INBOX@gmail.com` (NOT herself), thanks to the Reply-To.
 
 ### 4. Live form test
 
-Open `contact.html`, fill it out with a real test email, submit. The page should show the green success message. Both emails should arrive: one in the test inbox, one in `cherryjaneokeke@gmail.com`.
+Open `contact.html`, fill it out with a real test email, submit. The page should show the green success message. Both emails should arrive: one in the test inbox, one in `achieverswealthacademy@gmail.com`.
 
 ## Editing the emails later
 

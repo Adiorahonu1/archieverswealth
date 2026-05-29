@@ -2,7 +2,7 @@
 
 ## Client Info
 - **Name:** Chinemerem Cherryjane Okeke
-- **Email:** cherryjaneokeke@gmail.com
+- **Email:** achieverswealthacademy@gmail.com
 - **Phone:** (201) 912-1781
 - **Business:** Achievers Wealth Academy
 - **Also:** Licensed Life Insurance Broker, PHP Agency, Inc.
